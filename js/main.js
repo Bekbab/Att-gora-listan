@@ -7,6 +7,10 @@ let logs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_LOGS_LOGS)) || [];
 
 function logsList(items) {
     let list = document.createElement("ul");
+    items.forEach((item) => {
+
+
+    });
 }
 
 
