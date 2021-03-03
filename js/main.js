@@ -1,33 +1,57 @@
 "use strict";
 
-const LOCAL_STORAGE_KEY_LOGS_LOGS = "app.logs";
+const LOCAL_STORAGE_KEY_logs = "app.logs.objects";
 
-let logs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_LOGS_LOGS)) || [];
+let logs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_logs)) || [];
 
+let listRoot = document.querySelector("#list-root");
+let listForm = document.querySelector("[data-list-form]");
+let listInput = document.querySelector("[data-list-input]");
+
+listForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (listInput.value.trim() === "") {
+        return;
+    }
+    logs.push(createlogs(listInput.value.trim()));
+    updateList();
+    listInput.value = "";
+});
+
+function createlogs(name) {
+    return {
+        id: Date.now().toString(),
+        name: name,
+    };
+}
 
 function logsList(items) {
     let list = document.createElement("ul");
     items.forEach((item) => {
-
-
+        let logsListItem = document.createElement("li");
+        logsListItem.innerText = item.name;
+        logsListItem.setAttribute("data-id", item.id);
+        logsListItem.classList.add("logs-list-item");
+        logsListItem.addEventListener("click", removeItem);
+        list.append(logsListItem);
     });
+    return list;
 }
 
+function removeItem(event) {
+    let itemToRemove = event.target.getAttribute("data-id");
+    logs = logs.filter((item) => item.id !== itemToRemove);
+    updateList();
+}
 
+function updateList() {
+    saveList();
+    listRoot.innerHTML = "";
+    listRoot.append(logsList(logs));
+}
 
+function saveList() {
+    localStorage.setItem(LOCAL_STORAGE_KEY_logs, JSON.stringify(logs));
+}
 
-
-
-
-
-
-let idag = new Date();
-let dd = String(idag.getDate()).padStart(2, '0'); //.padstart lägger till nollor tills månadsformatet dd 
-let mm = String(idag.getMonth() + 1).padStart(2, '0');
-let yyyy = idag.getFullYear();
-
-
-let datelabel = document.createElement("p");
-datelabel.innerHTML = dd + '/' + mm + '/' + yyyy;
-let headerRef = document.querySelector("header");
-headerRef.append(datelabel);
+updateList();
