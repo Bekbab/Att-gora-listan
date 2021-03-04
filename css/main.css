@@ -1,31 +1,63 @@
 
+
 header {
   margin: 1rem;
 }
 
 body {
-  margin: 1rem;
   background-color:#FFC15E ;
   color: #1F1300;
   font-family: 'Trebuchet MS', sans-serif;
+  display:flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+h1 {
+  text-align: center;
+  font-size: 40px;
+  text-decoration:underline #F7934C;
+  text-decoration: ;
+}
+
+h2 {
+  text-align: center;
 }
 
 
+
+
+ul {
+  margin-left: 10%;
+  margin-right: 10%;
+  background-color: #F7934C;
+  border-radius: 3px;
+  align-items: center;
+  
+}
 
 li {
   line-height: 2rem;
-  list-style: circle;
+  list-style:disc;
   cursor: pointer;
   user-select: none;
+  text-align: left;
+  margin-right: 5%;
 }
 
 li:hover {
-  font-weight: bolder;
   text-decoration: line-through 3px ;
+  color:#CC5803;
   
 }
 
 
+form {
+  display:flex;
+  flex-direction: row;
+  margin-left: 10%;
+  margin-right: 10%;
+}
 
 button {
   border-radius: 3px ;
@@ -33,6 +65,7 @@ button {
   border-style:solid;
   background-color: #F7934C;
   cursor:pointer;
+  margin-left: 1rem;
 }
 button:hover {
   border-color:#CC5803  
@@ -46,7 +79,9 @@ input[type="text"] {
   outline:none;
   border:0;
   border-radius: 3px;
-  width:20rem;
+  width:100%;
+  align-items: center;
+  
 }
 
 input[type="text"]:hover {
