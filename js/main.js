@@ -1,8 +1,8 @@
 "use strict";
 
-const LOCAL_STORAGE_KEY_logs = "app.logs.objects";
+const LOCAL_STORAGE_KEY_LOGS = "app.logs.objects";
 
-let logs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_logs)) || [];
+let logs = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY_LOGS)) || [];
 
 let listRoot = document.querySelector("#list-root");
 let listForm = document.querySelector("[data-list-form]");
@@ -51,7 +51,7 @@ function updateList() {
 }
 
 function saveList() {
-    localStorage.setItem(LOCAL_STORAGE_KEY_logs, JSON.stringify(logs));
+    localStorage.setItem(LOCAL_STORAGE_KEY_LOGS, JSON.stringify(logs));
 }
 
 updateList();
